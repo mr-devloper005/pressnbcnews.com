@@ -1,93 +1,107 @@
-import Link from "next/link";
-import { PageShell } from "@/components/shared/page-shell";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { mockTeamMembers } from "@/data/mock-data";
-import { SITE_CONFIG } from "@/lib/site-config";
-
-const highlights = [
-  { label: "Creators onboarded", value: "12k+" },
-  { label: "Bookmarks shared", value: "180k" },
-  { label: "Listings published", value: "8.6k" },
-];
+import Link from 'next/link'
+import { Globe2, LineChart, Newspaper, Users } from 'lucide-react'
+import { NavbarShell } from '@/components/shared/navbar-shell'
+import { Footer } from '@/components/shared/footer'
 
 const values = [
-  { title: "Curated by people", description: "We believe trusted recommendations beat endless feeds." },
-  { title: "Designed for focus", description: "Clear, calm UI helps you find the next best resource fast." },
-  { title: "Built to share", description: "Collections make collaboration and knowledge flow effortless." },
-];
+  {
+    icon: Newspaper,
+    title: 'Editorial quality',
+    body: 'Every release page is optimized for clear reading, structured information, and media trust.',
+  },
+  {
+    icon: Globe2,
+    title: 'Distribution reach',
+    body: 'Campaigns are built to improve discovery across category feeds and search surfaces.',
+  },
+  {
+    icon: LineChart,
+    title: 'Measurable growth',
+    body: 'Analytics and reporting help teams understand where visibility improves over time.',
+  },
+  {
+    icon: Users,
+    title: 'Team collaboration',
+    body: 'Designed for founders, in-house comms teams, and agencies running multiple releases.',
+  },
+]
+
+const milestones = [
+  { year: '2023', text: 'Platform launched as a focused media release workspace.' },
+  { year: '2024', text: 'Expanded into campaign analytics and category-led distribution.' },
+  { year: '2025', text: 'Introduced SaaS-style planning, add-ons, and performance dashboards.' },
+  { year: '2026', text: 'Scaled into a full newsroom distribution product for modern teams.' },
+]
 
 export default function AboutPage() {
   return (
-    <PageShell
-      title={`About ${SITE_CONFIG.name}`}
-      description={`${SITE_CONFIG.name} is a modern platform for creators, communities, and curated business discovery.`}
-      actions={
-        <>
-          <Button variant="outline" asChild>
-            <Link href="/team">Meet the Team</Link>
-          </Button>
-          <Button asChild>
-            <Link href="/contact">Contact Us</Link>
-          </Button>
-        </>
-      }
-    >
-      <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-        <Card className="border-border bg-card">
-          <CardContent className="space-y-4 p-6">
-            <Badge variant="secondary">Our Story</Badge>
-            <h2 className="text-2xl font-semibold text-foreground">
-              A single home for knowledge, discovery, and community.
-            </h2>
-            <p className="text-sm text-muted-foreground">
-              {SITE_CONFIG.name} brings together publishing, listings, and social bookmarking so teams can move faster
-              and keep their best resources close.
-            </p>
-            <div className="grid gap-4 sm:grid-cols-3">
-              {highlights.map((item) => (
-                <div key={item.label} className="rounded-lg border border-border bg-secondary/40 p-4">
-                  <div className="text-2xl font-semibold text-foreground">{item.value}</div>
-                  <div className="text-xs text-muted-foreground">{item.label}</div>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-        <div className="space-y-4">
-          {values.map((value) => (
-            <Card key={value.title} className="border-border bg-card">
-              <CardContent className="p-6">
-                <h3 className="text-lg font-semibold text-foreground">{value.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{value.description}</p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </div>
+    <div className="press-shell min-h-screen text-[#331737]">
+      <NavbarShell />
+      <main className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+        <section className="text-center">
+          <p className="inline-flex rounded-full border border-[#ebd1e7] bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-[#8a5685]">
+            About us
+          </p>
+          <h1 className="mt-4 text-4xl font-black tracking-[-0.02em] text-[#3d1d42] sm:text-5xl">
+            Built for media press release teams
+          </h1>
+          <p className="mx-auto mt-4 max-w-3xl text-sm leading-7 text-[#6d4f71]">
+            PressNBCNews is a media-focused SaaS platform that helps organizations publish better releases, improve reach, and keep newsroom archives discoverable.
+          </p>
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+            <Link href="/updates" className="rounded-full bg-[linear-gradient(120deg,#EB5B00,#D91656)] px-5 py-2.5 text-sm font-semibold text-white">
+              Explore latest news
+            </Link>
+            <Link href="/contact" className="rounded-full border border-[#e5c8db] bg-white px-5 py-2.5 text-sm font-semibold text-[#640D5F]">
+              Contact our team
+            </Link>
+          </div>
+        </section>
 
-      <div className="mt-10 grid gap-6 md:grid-cols-3">
-        {mockTeamMembers.map((member) => (
-          <Card key={member.id} className="border-border bg-card transition-transform hover:-translate-y-1">
-            <CardContent className="p-6">
-              <div className="flex items-center gap-3">
-                <Avatar className="h-12 w-12">
-                  <AvatarImage src={member.avatar} alt={member.name} />
-                  <AvatarFallback>{member.name.charAt(0)}</AvatarFallback>
-                </Avatar>
-                <div>
-                  <p className="text-sm font-semibold text-foreground">{member.name}</p>
-                  <p className="text-xs text-muted-foreground">{member.role}</p>
-                </div>
+        <section className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {values.map((value) => (
+            <article key={value.title} className="press-panel rounded-[1.4rem] p-5">
+              <value.icon className="h-5 w-5 text-[#d91656]" />
+              <h2 className="mt-3 text-lg font-bold text-[#3d1d42]">{value.title}</h2>
+              <p className="mt-2 text-sm leading-7 text-[#6d4f71]">{value.body}</p>
+            </article>
+          ))}
+        </section>
+
+        <section className="mt-10 grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+          <div className="rounded-[1.8rem] border border-[#f0c8b6] bg-white p-6 shadow-[0_14px_34px_rgba(100,13,95,0.08)]">
+            <h2 className="text-2xl font-black text-[#3d1d42]">Our mission</h2>
+            <p className="mt-3 text-sm leading-7 text-[#6d4f71]">
+              We believe media announcements should look credible, perform well in search, and remain easy to discover long after publication.
+            </p>
+            <p className="mt-3 text-sm leading-7 text-[#6d4f71]">
+              Instead of generic templates, we deliver an interface tuned for release workflows: publication, distribution, analysis, and iteration.
+            </p>
+          </div>
+          <div className="rounded-[1.8rem] bg-[linear-gradient(135deg,#640D5F,#D91656)] p-6 text-white">
+            <h2 className="text-2xl font-black">What makes us different</h2>
+            <ul className="mt-4 space-y-2 text-sm text-[#ffe8fa]">
+              <li>- Newsroom-style reading layouts for every release.</li>
+              <li>- Distribution-aware structure with campaign focus.</li>
+              <li>- Fast mobile-friendly browsing for media audiences.</li>
+              <li>- UX designed to feel like a product, not a clone template.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section className="mt-10 rounded-[1.8rem] border border-[#f0c8b6] bg-white p-6 shadow-[0_14px_34px_rgba(100,13,95,0.08)]">
+          <h2 className="text-2xl font-black text-[#3d1d42]">Growth timeline</h2>
+          <div className="mt-5 grid gap-4 sm:grid-cols-2">
+            {milestones.map((item) => (
+              <div key={item.year} className="rounded-xl border border-[#efd6e8] bg-[#fffdf8] p-4">
+                <p className="text-sm font-bold text-[#d91656]">{item.year}</p>
+                <p className="mt-1 text-sm text-[#5f3c60]">{item.text}</p>
               </div>
-              <p className="mt-3 text-sm text-muted-foreground">{member.bio}</p>
-              <p className="mt-3 text-xs text-muted-foreground">{member.location}</p>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-    </PageShell>
-  );
+            ))}
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </div>
+  )
 }
