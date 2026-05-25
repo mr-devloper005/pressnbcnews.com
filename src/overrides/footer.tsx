@@ -54,6 +54,7 @@ export function FooterOverride() {
           </div>
         </div>
 
+
         <div className="mt-10 flex flex-col gap-3 border-t border-[#f0c8b6] pt-6 text-xs text-[#7b5778] sm:flex-row sm:items-center sm:justify-between">
           <p>&copy; {year} {SITE_CONFIG.name}. All rights reserved.</p>
           <p>Built for media publishing and press media distribution.</p>
